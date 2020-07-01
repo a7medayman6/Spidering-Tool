@@ -18,21 +18,6 @@ class Gatherer(HTMLParser):
                     url = parse.urljoin(self.base_url, value)
                     self.urls.add(url)
 
-    def gather_urls(self):
-        html_page = ''
-        try:
-            response = urlopen(self.page_url)
-            if 'text/html' in response.getheader('Content-Type'):
-                html = response.read()
-                html_page = html.decode('utf-8')
-                #search in html page here
-                self.feed(html_page)
-                print("gathering...")
-            return self.getUrls()
-        except:
-            return set()        
-
-
     def getUrls(self):
         return self.urls                
 

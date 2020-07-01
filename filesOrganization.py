@@ -13,7 +13,8 @@ def touch(directory, base_url):
         write(wait_list_file, base_url)
    
     if not os.path.exists(crawled_file):
-        write(crawled_file, base_url)
+        write(crawled_file, '')
+        
 
 
 def write(file_path, data):
@@ -22,7 +23,7 @@ def write(file_path, data):
 
 
 def write_set(file_path, set):
-    
+
     with open(file_path, 'w') as file:
         for url in set:
             file.write(url)

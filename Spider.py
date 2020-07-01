@@ -1,6 +1,8 @@
+from urllib.request import urlopen
 from filesOrganization import * 
 from domainChecker import in_domain
 from Gatherer import Gatherer
+
 
 
 class Spider:
@@ -20,25 +22,26 @@ class Spider:
         Spider.wait_list_file = Spider.project_name + '/waiting.txt'
         Spider.crawled_file = Spider.project_name + '/crawled.txt'
         Spider.trigger()
-        Spider.crawl()
+        Spider.crawl(base_url)
 
     @staticmethod
     def trigger():
         mkdir(Spider.project_name)
-        touch(Spider.project_name, Spider.base_url)
-        touch(Spider.project_name, '')
-        wait_list = read(Spider.wait_list_file)
-        crawled = read(Spider.crawled_file)
+        touch(Spider.project_name, Spider.base_url) 
+        Spider.wait_list = read(Spider.wait_list_file)
+        Spider.crawled = read(Spider.crawled_file)
+
 
     @staticmethod
-    def crawl():
-        for url in Spider.wait_list:
-            gatherer = Gatherer(Spider.base_url, url)
-            new_links = gatherer.getUrls
-            gatherer.gather_urls()
+    def crawl(url):
+        new_links = set()
+        print(len(Spider.wait_list))
+        if url not in Spider.crawled:
+            new_links = Spider.gather_urls(url)
             Spider.add_links(new_links)
-            Spider.move_to_crawled(url)
-        write_set(Spider.wait_list_file, Spider.wait_list)    
+        
+        Spider.update(url)
+          
 
     @staticmethod
     def add_links(links):
@@ -49,12 +52,31 @@ class Spider:
                     Spider.wait_list.add(url)
 
     @staticmethod
-    def move_to_crawled(url):
-        Spider.wait_list.remove(url)
+    def update(url):
+        if url in Spider.wait_list:
+            Spider.wait_list.remove(url)
         Spider.crawled.add(url)
+        write_set(Spider.wait_list_file, Spider.wait_list) 
+        write_set(Spider.crawled_file, Spider.crawled) 
             
-
-
+    @staticmethod
+    def gather_urls(url):
+        html_page = ''
+        print("gathering...")
+        try:
+            response = urlopen(url)
+            if 'text/html' in response.getheader('Content-Type'):
+                html = response.read()
+                html_page = html.decode('utf-8')
+                gatherer = Gatherer(Spider.base_url, url)
+                gatherer.feed(html_page)
+                #search in html page here
+                
+        except Exception as e:
+            print(str(e))
+            return set()   
+        
+        return gatherer.getUrls()
 
 
 
