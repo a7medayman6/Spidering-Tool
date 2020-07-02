@@ -1,7 +1,0 @@
-https://drewadwade.github.io/training/training.html
-https://drewadwade.github.io/index.html
-https://drewadwade.github.io/contact.html
-https://drewadwade.github.io/resources/resources.html
-https://drewadwade.github.io/hackathons/hackathons.html
-https://mohawkcsc.github.io
-https://drewadwade.github.io/ctfs/ctfs.html
