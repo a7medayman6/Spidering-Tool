@@ -12,4 +12,5 @@ Functionalities:
 Notes: 
 
 1. To Run the script for the same website more than once, you have to either change the 
-	project name, or delete the previous project directory.	 
+	project name, or delete the previous project directory.	
+2. The project directory name is the name of the project.	 
