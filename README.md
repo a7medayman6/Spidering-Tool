@@ -4,7 +4,7 @@ Web Spidering tool gatheres all links from a base URL.
 
 Functionalities:
 
-1. Gathere all links from a base URL.
+1. Gather all links from a base URL.
 2. Search for a text in all the links.
 3. Save all the gathered links in a file in the project directory.
 4. Save the search results in a file in the project directory.
