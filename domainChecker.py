@@ -13,6 +13,7 @@ def get_sub_domain_name(url):
     except:
         return ''
 
+
 def in_domain(domain, url):
     url_domain = get_domain_name(url)
     if domain == url_domain:

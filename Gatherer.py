@@ -11,13 +11,14 @@ class Gatherer(HTMLParser):
         self.page_url = page_url
         self.urls = set()
 
-    # When we call HTMLParser feed() this function is called when it encounters an opening tag <a>
+    # When we call HTMLParser feed() this Function is Called when it encounters an opening tag <a>
     def handle_starttag(self, tag, attrs):
         if tag == 'a':
             for (attribute, value) in attrs:
                 if attribute == 'href':
                     url = parse.urljoin(self.base_url, value)
                     self.urls.add(url)
+                    
 
     def getUrls(self):
         return self.urls                
