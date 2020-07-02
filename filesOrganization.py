@@ -19,14 +19,14 @@ def touch(directory, base_url):
 
 def write(file_path, data):
     with open(file_path, 'w') as file:
-        file.write(data)
+        file.write(data + '\n')
 
 
 def write_set(file_path, set):
 
     with open(file_path, 'w') as file:
         for url in set:
-            file.write(url)
+            file.write(url + '\n')
 
 
 def read(file_path):

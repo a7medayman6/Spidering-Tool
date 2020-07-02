@@ -2,6 +2,7 @@ from urllib.request import urlopen
 from filesOrganization import * 
 from domainChecker import in_domain
 from Gatherer import Gatherer
+import os
 
 
 
@@ -19,8 +20,8 @@ class Spider:
         Spider.project_name = project_name
         Spider.base_url = base_url
         Spider.domain = domain
-        Spider.wait_list_file = Spider.project_name + '/waiting.txt'
-        Spider.crawled_file = Spider.project_name + '/crawled.txt'
+        Spider.wait_list_file = os.path.join(Spider.project_name, 'waiting.txt')
+        Spider.crawled_file = os.path.join(Spider.project_name, 'crawled.txt')
         Spider.trigger()
         Spider.crawl(base_url)
 
@@ -36,6 +37,7 @@ class Spider:
     def crawl(url):
         new_links = set()
         print(len(Spider.wait_list))
+        print(url)
         if url not in Spider.crawled:
             new_links = Spider.gather_urls(url)
             Spider.add_links(new_links)

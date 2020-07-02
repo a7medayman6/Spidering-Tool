@@ -3,7 +3,7 @@ from domainChecker import get_domain_name
 
 
 project_name = 'drewadwade'
-base_url = 'https://drewadwade.github.io/ctfs/'
+base_url = 'https://drewadwade.github.io/'
 domain = get_domain_name(base_url)
 spider = Spider(project_name, base_url, domain)
 #top = Spider.wait_list.pop()
