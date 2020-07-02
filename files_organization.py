@@ -4,17 +4,19 @@ import os
 def mkdir(dirictory):
     if not os.path.exists(dirictory):
         os.mkdir(dirictory)
-
+    
 # Create a new txt file
 def touch(directory, base_url):
     wait_list_file = os.path.join(directory, 'waiting.txt')
     crawled_file = os.path.join(directory, 'crawled.txt')
-  
+    search_results_file = os.path.join(directory, 'search_results.txt')
     if not os.path.exists(wait_list_file):
         write(wait_list_file, base_url)
    
     if not os.path.exists(crawled_file):
         write(crawled_file, '')       
+
+  
 
 # Override on a file with a string
 def write(file_path, data):
