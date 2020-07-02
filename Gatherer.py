@@ -2,6 +2,7 @@ from html.parser import HTMLParser
 from urllib import parse
 from urllib.request import urlopen
 
+
 class Gatherer(HTMLParser):
     
     def __init__(self, base_url, page_url):
