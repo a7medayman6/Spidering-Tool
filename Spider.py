@@ -1,5 +1,5 @@
 from urllib.request import urlopen
-from filesOrganization import * 
+from files_organization import * 
 from domainChecker import in_domain
 from Gatherer import Gatherer
 import os
@@ -72,13 +72,14 @@ class Spider:
                 html_page = html.decode('utf-8')
                 gatherer = Gatherer(Spider.base_url, url)
                 gatherer.feed(html_page)
+                return gatherer.getUrls()
                 #search in html page here
                 
         except Exception as e:
             print(str(e))
-            return set()   
         
-        return gatherer.getUrls()
+        return set()   
+       
 
 
 
