@@ -1,3 +1,4 @@
+import io
 from urllib.request import urlopen
 from files_organization import * 
 from domainChecker import in_domain
@@ -19,7 +20,7 @@ class Spider:
     wait_list_file = ''
     search_results_file = ''
     crawled_file = ''
-
+    first_res = False
 
 
     def __init__(self, project_name, base_url, domain, name, search_word):
@@ -32,7 +33,7 @@ class Spider:
         Spider.crawled_file = os.path.join(Spider.project_name, 'crawled.txt')
         Spider.search_results_file = os.path.join(Spider.project_name, 'search_results.txt')
         Spider.trigger()
-        print (self.name + "is crawling " + base_url + " ...")
+        print (self.name + " is crawling " + base_url + " ...")
         self.crawl(base_url)
 
     @staticmethod
@@ -86,9 +87,19 @@ class Spider:
                 #search in html page here
                 if Spider.search_word != '':
                     print("Searching ...")
-                    if html_page.find(Spider.search_word) and url not in Spider.search_results:
-                        Spider.search_results.add(url)
-                        print ("Found the word in " + str(url))
+
+                    page = io.StringIO(html_page)
+                    index = 0
+                     
+                    for line in page:
+                        index += 1
+                        if Spider.search_word in line and url not in Spider.search_results:
+                            Spider.search_results.add(url)
+                            temp_s = ("line\t" + str(index) + "\t" + str(url))
+                            if not Spider.first_res: 
+                                write
+                            append(Spider.search_results_file, temp_s)
+                            print ("Found the word in line " + str(index) + " in " + str(url))
 
                 return gatherer.getUrls()
                 
@@ -96,16 +107,6 @@ class Spider:
             print(str(e))
         
         return set()
-
-   
-    #def search(self, page, url):
-        
-    #    if page.search_word(Spider.search_word) and url not in Spider.search_results:
-    #            Spider.search_results.add(url)
-    #            print ("Found the word in " + str(url))
-
-
-
 
 
 
