@@ -11,6 +11,12 @@ Functionalities:
 
 Notes: 
 
-1. To Run the script for the same website more than once, you have to either change the 
+1. To Run the tool:
+	download all the files
+	open the directory
+	right click > open in terminal
+	execute this command: python3 main.py
+2. You must have python3 to run the tool	 
+3. To Run the tool for the same website more than once, you have to either change the 
 	project name, or delete the previous project directory.	
-2. The project directory name is the name of the project.	 
+4. The project directory name is the name of the project.	 
